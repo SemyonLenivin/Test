@@ -90,37 +90,37 @@ abstract public class TempConverter { //TempConverter - абстрактный �
 	public void convert(String fromS, String toS, double uValue) {
 		if ((fromS == "C") || (fromS == "С") || (fromS == "c") || (fromS == "с")) {
 			if ((toS == "K") || (toS == "k") || (toS == "К") || (toS == "к")) {
-				setResult(uValue + var3);
-				//setAstring(Double.toString(getResult())); 
+				setResult(uValue + getVar3());
+				setAstring(Double.toString(getResult())); 
 				System.out.println("Получилось: " + getAstring() + toS);
 			}
 			else if ((toS == "F") || (toS == "f")) {
-				setResult(uValue * var1 + var2);
-				//setAstring(Double.toString(getResult)); 
+				setResult(uValue * getVar1() + getVar2());
+				setAstring(Double.toString(getResult())); 
 				System.out.println("Получилось: " + getAstring() + toS);	
 			}
 		}
 		else if ((fromS == "K") || (fromS == "k") || (fromS == "К") || (fromS == "к")) {
 			if ((toS == "C") || (toS == "С") || (toS == "c") || (toS == "с")) {
-				setResult(uValue - var3);
-				//setAstring(Double.toString(getResult)); 
+				setResult(uValue - getVar3());
+				setAstring(Double.toString(getResult())); 
 				System.out.println("Получилось: " + getAstring() + toS);
 			}
 			else if ((toS == "F") || (toS == "f")) {
-				setResult((uValue - var3) * var1 + var2);
-				//setAstring(Double.toString(getResult)); 
+				setResult((uValue - getVar3()) * getVar1() + getVar2());
+				setAstring(Double.toString(getResult())); 
 				System.out.println("Получилось: " + getAstring() + toS);
 			}
 		}
 		else if ((fromS == "F") || (fromS == "f")) {
 			if ((toS == "K") || (toS == "k") || (toS == "К") || (toS == "к")) {
-				setResult((uValue + var2) / var1 + var3);
-				//setAstring(Double.toString(getResult)); 
+				setResult((uValue + getVar2()) / getVar1() + getVar3());
+				setAstring(Double.toString(getResult())); 
 				System.out.println("Получилось: " + getAstring() + toS);
 			}
 			else if ((toS == "C") || (toS == "С") || (toS == "c") || (toS == "с")) {
-				setResult((uValue - var2) / var1);
-				//setAstring(Double.toString(getResult)); 
+				setResult((uValue - getVar2()) / getVar1());
+				//setAstring(Double.toString(getResult())); 
 				System.out.println("Получилось: " + getAstring() + toS);
 			}
 		}
