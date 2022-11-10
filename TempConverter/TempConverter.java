@@ -78,7 +78,7 @@ abstract public class TempConverter { //TempConverter - абстрактный �
 
 
 	public static void main(String[] args) {
-		FromCelsiusToKelvin b = new FromCelsiusToKelvin();
+		TempConverter b = new FromCelsiusToKelvin();
 		b.start();
 	}
 	
@@ -87,41 +87,41 @@ abstract public class TempConverter { //TempConverter - абстрактный �
 
 
 
-	public void convert(String fromSmth, String toSmth, double userValue) {
-		if ((fromSmth == "C") || (fromSmth == "С") || (fromSmth == "c") || (fromSmth == "с")) {
-			if ((toSmth == "K") || (toSmth == "k") || (toSmth == "К") || (toSmth == "к")) {
-				setResult(userValue + var3);
-				setAstring(Double.toString(result)); 
-				System.out.println("Получилось: " + getAstring() + toSmth);
+	public void convert(String fromS, String toS, double uValue) {
+		if ((fromS == "C") || (fromS == "С") || (fromS == "c") || (fromS == "с")) {
+			if ((toS == "K") || (toS == "k") || (toS == "К") || (toS == "к")) {
+				setResult(uValue + var3);
+				//setAstring(Double.toString(getResult())); 
+				System.out.println("Получилось: " + getAstring() + toS);
 			}
-			else if ((toSmth == "F") || (toSmth == "f")) {
-				setResult(userValue * var1 + var2);
-				setAstring(Double.toString(result)); 
-				System.out.println("Получилось: " + getAstring() + toSmth);	
-			}
-		}
-		else if ((fromSmth == "K") || (fromSmth == "k") || (fromSmth == "К") || (fromSmth == "к")) {
-			if ((toSmth == "C") || (toSmth == "С") || (toSmth == "c") || (toSmth == "с")) {
-				setResult(userValue - var3);
-				setAstring(Double.toString(result)); 
-				System.out.println("Получилось: " + getAstring() + toSmth);
-			}
-			else if ((toSmth == "F") || (toSmth == "f")) {
-				setResult((userValue - var3) * var1 + var2);
-				setAstring(Double.toString(result)); 
-				System.out.println("Получилось: " + getAstring() + toSmth);
+			else if ((toS == "F") || (toS == "f")) {
+				setResult(uValue * var1 + var2);
+				//setAstring(Double.toString(getResult)); 
+				System.out.println("Получилось: " + getAstring() + toS);	
 			}
 		}
-		else if ((fromSmth == "F") || (fromSmth == "f")) {
-			if ((toSmth == "K") || (toSmth == "k") || (toSmth == "К") || (toSmth == "к")) {
-				setResult((userValue + var2) / var1 + var3);
-				setAstring(Double.toString(result)); 
-				System.out.println("Получилось: " + getAstring() + toSmth);
+		else if ((fromS == "K") || (fromS == "k") || (fromS == "К") || (fromS == "к")) {
+			if ((toS == "C") || (toS == "С") || (toS == "c") || (toS == "с")) {
+				setResult(uValue - var3);
+				//setAstring(Double.toString(getResult)); 
+				System.out.println("Получилось: " + getAstring() + toS);
 			}
-			else if ((toSmth == "C") || (toSmth == "С") || (toSmth == "c") || (toSmth == "с")) {
-				setResult((userValue - var2) / var1);
-				setAstring(Double.toString(result)); 
-				System.out.println("Получилось: " + getAstring() + toSmth);
+			else if ((toS == "F") || (toS == "f")) {
+				setResult((uValue - var3) * var1 + var2);
+				//setAstring(Double.toString(getResult)); 
+				System.out.println("Получилось: " + getAstring() + toS);
+			}
+		}
+		else if ((fromS == "F") || (fromS == "f")) {
+			if ((toS == "K") || (toS == "k") || (toS == "К") || (toS == "к")) {
+				setResult((uValue + var2) / var1 + var3);
+				//setAstring(Double.toString(getResult)); 
+				System.out.println("Получилось: " + getAstring() + toS);
+			}
+			else if ((toS == "C") || (toS == "С") || (toS == "c") || (toS == "с")) {
+				setResult((uValue - var2) / var1);
+				//setAstring(Double.toString(getResult)); 
+				System.out.println("Получилось: " + getAstring() + toS);
 			}
 		}
 	
@@ -144,33 +144,33 @@ abstract public class TempConverter { //TempConverter - абстрактный �
 		setToSmth(str);
 	
 		System.out.println("Хорошо, введите значение температуры, которое нужно конвертировать: ");
-		Double v = in.nextDouble();
+		double v = in.nextDouble();
 		setUserValue(v);
 		
-		if (((fromSmth == "C") || (fromSmth == "С") || (fromSmth == "c") || (fromSmth == "с")) && ((toSmth == "K") || (toSmth == "k") || (toSmth == "К") || (toSmth == "к"))) {
-			FromCelsiusToKelvin a = new FromCelsiusToKelvin();
+		if (((getFromSmth() == "C") || (getFromSmth() == "С") || (getFromSmth() == "c") || (getFromSmth() == "с")) && ((getToSmth() == "K") || (getToSmth() == "k") || (getToSmth() == "К") || (getToSmth() == "к"))) {
+			TempConverter a = new FromCelsiusToKelvin();
 			a.convert(getFromSmth(), getToSmth(), getUserValue());
 		}
-		else if (((fromSmth == "C") || (fromSmth == "С") || (fromSmth == "c") || (fromSmth == "с")) && ((toSmth == "F") || (toSmth == "f"))) {
-			FromCelsiusToFahrenheit a = new FromCelsiusToFahrenheit();
+		else if (((getFromSmth() == "C") || (getFromSmth() == "С") || (getFromSmth() == "c") || (getFromSmth() == "с")) && ((getToSmth() == "F") || (getToSmth() == "f"))) {
+			TempConverter a = new FromCelsiusToFahrenheit();
 			a.convert(getFromSmth(), getToSmth(), getUserValue());
 		}
 		
-		else if	(((fromSmth == "K") || (fromSmth == "k") || (fromSmth == "К") || (fromSmth == "к")) && ((toSmth == "C") || (toSmth == "С") || (toSmth == "c") || (toSmth == "с"))) {
-			FromKelvinToCelsius a = new FromKelvinToCelsius();
+		else if	(((getFromSmth() == "K") || (getFromSmth() == "k") || (getFromSmth() == "К") || (getFromSmth() == "к")) && ((getToSmth() == "C") || (getToSmth() == "С") || (getToSmth() == "c") || (getToSmth() == "с"))) {
+			TempConverter a = new FromKelvinToCelsius();
 			a.convert(getFromSmth(), getToSmth(), getUserValue());
 		}
-		else if (((fromSmth == "K") || (fromSmth == "k") || (fromSmth == "К") || (fromSmth == "к")) && ((toSmth == "F") || (toSmth == "f"))) {
-			FromKelvinToFahrenheit a = new FromKelvinToFahrenheit();
+		else if (((getFromSmth() == "K") || (getFromSmth() == "k") || (getFromSmth() == "К") || (getFromSmth() == "к")) && ((getToSmth() == "F") || (getToSmth() == "f"))) {
+			TempConverter a = new FromKelvinToFahrenheit();
 			a.convert(getFromSmth(), getToSmth(), getUserValue());
 		}
 
-		else if (((fromSmth == "F") || (fromSmth == "f")) && ((toSmth == "C") || (toSmth == "С") || (toSmth == "c") || (toSmth == "с"))) {
-			FromFahrenheitToCelsius a = new FromFahrenheitToCelsius();
+		else if (((getFromSmth() == "F") || (getFromSmth() == "f")) && ((getToSmth() == "C") || (getToSmth() == "С") || (getToSmth() == "c") || (getToSmth() == "с"))) {
+			TempConverter a = new FromFahrenheitToCelsius();
 			a.convert(getFromSmth(), getToSmth(), getUserValue());
 		}
-		else if (((fromSmth == "F") || (fromSmth == "f")) && ((toSmth == "K") || (toSmth == "k") || (toSmth == "К") || (toSmth == "к"))) {
-			FromFahrenheitToKelvin a = new FromFahrenheitToKelvin();
+		else if (((getFromSmth() == "F") || (getFromSmth() == "f")) && ((getToSmth() == "K") || (getToSmth() == "k") || (getToSmth() == "К") || (getToSmth() == "к"))) {
+			TempConverter a = new FromFahrenheitToKelvin();
 			a.convert(getFromSmth(), getToSmth(), getUserValue());
 		}
 	
