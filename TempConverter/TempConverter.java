@@ -1,9 +1,15 @@
-import java.util.Scanner;
+import java.io.*;
+import java.lang.Double;
+//import java.io.FileInputStream;
+//import java.io.IOException;
+//import java.io.InputStreamReader;
+//import java.io.BufferedReader;
+//import java.util.Scanner;
 
 abstract public class TempConverter { //TempConverter - абстрактный родительский класс, имеет абстрактные подклассы FromCelsiusTo, FromKelvinTo и FromFahrenheitTo, а те в свою очередь имеют конкретные подклассы.
 //В TempConverter находится метод main, к-й вызывает в свою очередь метод start через объект экземпляра конкретного подкласса, после чего метод start получает значения от пользователя и передает их соответствующим
-// переменным, также main имеет метод convert, который уже определен и к-й только стоит вызвать любому конкретному подклассу.
-//У каждого из абстрактных классов, дочерних от TempConverter,  есть по два конкретных подкласса, например, у класса FromCelsiusTo - это FromCelsiusToKelvin и FromCelsiusToFahrenheit.
+// переменным, также метод start вызывает метод convert, который уже определен.
+//На данный момент у каждого из абстрактных классов, дочерних от TempConverter,  есть по два конкретных подкласса, например, у класса FromCelsiusTo - это FromCelsiusToKelvin и FromCelsiusToFahrenheit.
 //В каждом из дочерних классов у меня написаны только название класса, его модификаторы и фигурные скобки, можно ли так писать? У меня там даже методы не объявлены.
 // По итогу программа у меня после принятия цифр в формате double не возвращает ничего, я не понимаю, почему, может проблема в том, что программа принимает не double, а, например, String?
 
@@ -91,37 +97,37 @@ abstract public class TempConverter { //TempConverter - абстрактный �
 		if ((fromS == "C") || (fromS == "С") || (fromS == "c") || (fromS == "с")) {
 			if ((toS == "K") || (toS == "k") || (toS == "К") || (toS == "к")) {
 				setResult(uValue + getVar3());
-				setAstring(Double.toString(getResult())); 
-				System.out.println("Получилось: " + getAstring() + toS);
+				//String aString = Double().toString(getResult()); 
+				System.out.println("Получилось: " + getResult() + toS);
 			}
 			else if ((toS == "F") || (toS == "f")) {
 				setResult(uValue * getVar1() + getVar2());
-				setAstring(Double.toString(getResult())); 
-				System.out.println("Получилось: " + getAstring() + toS);	
+				//String aString = Double().toString(getResult());   
+				System.out.println("Получилось: " + getResult() + toS);	
 			}
 		}
 		else if ((fromS == "K") || (fromS == "k") || (fromS == "К") || (fromS == "к")) {
 			if ((toS == "C") || (toS == "С") || (toS == "c") || (toS == "с")) {
 				setResult(uValue - getVar3());
-				setAstring(Double.toString(getResult())); 
-				System.out.println("Получилось: " + getAstring() + toS);
+				//String aString = Double().toString(getResult());   
+				System.out.println("Получилось: " + getResult() + toS);
 			}
 			else if ((toS == "F") || (toS == "f")) {
 				setResult((uValue - getVar3()) * getVar1() + getVar2());
-				setAstring(Double.toString(getResult())); 
-				System.out.println("Получилось: " + getAstring() + toS);
+				//String aString = Double().toString(getResult());  
+				System.out.println("Получилось: " + getResult() + toS);
 			}
 		}
 		else if ((fromS == "F") || (fromS == "f")) {
 			if ((toS == "K") || (toS == "k") || (toS == "К") || (toS == "к")) {
 				setResult((uValue + getVar2()) / getVar1() + getVar3());
-				setAstring(Double.toString(getResult())); 
-				System.out.println("Получилось: " + getAstring() + toS);
+				//String aString = Double().toString(getResult());  
+				System.out.println("Получилось: " + getResult() + toS);
 			}
 			else if ((toS == "C") || (toS == "С") || (toS == "c") || (toS == "с")) {
 				setResult((uValue - getVar2()) / getVar1());
-				//setAstring(Double.toString(getResult())); 
-				System.out.println("Получилось: " + getAstring() + toS);
+				//String aString = Double().toString(getResult()); 
+				System.out.println("Получилось: " + getResult() + toS);
 			}
 		}
 	
@@ -132,8 +138,33 @@ abstract public class TempConverter { //TempConverter - абстрактный �
 
 
 
-	public void start() {
+	public void start() throws IOException {
 		
+
+		try {
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		System.out.println("Введите единицу измерения температуры, которую нужно конвертировать. Например: введите С, если это Цельсия, K, если Кельвины, если Фаренгейты ");
+       		String unit = reader.readLine();
+		setFromSmth(unit);
+		
+		System.out.println("Введите, во что вы хотите конвертировать градусы по " + getFromSmth() + ". Например: введите F, если в Фаренгейты, или K, если в Кельвины, С, если в Цельсия: ");
+		String str = reader.readLine();
+		setToSmth(str);
+		}
+		catch (Exception e) {
+           		System.out.println("Exception: " + e);
+      		}
+		try {
+			System.out.println("Хорошо, введите значение температуры, которое нужно конвертировать: ");
+			String g = reader.readLine();
+			double v = Double.parseDouble(g);
+			setUserValue(v);
+		}
+		catch (Exception e) {
+           		System.out.println("Exception: " + e);
+      		}
+
+		/* 
 		Scanner in = new Scanner(System.in);	
 		System.out.println("Введите единицу измерения температуры, которую нужно конвертировать. Например: введите C, если это Цельсия, K, если Кельвины, если Фаренгейты ");
 		String unit = in.nextLine();
@@ -146,7 +177,13 @@ abstract public class TempConverter { //TempConverter - абстрактный �
 		System.out.println("Хорошо, введите значение температуры, которое нужно конвертировать: ");
 		double v = in.nextDouble();
 		setUserValue(v);
-		
+		*/
+
+
+
+
+
+
 		if (((getFromSmth() == "C") || (getFromSmth() == "С") || (getFromSmth() == "c") || (getFromSmth() == "с")) && ((getToSmth() == "K") || (getToSmth() == "k") || (getToSmth() == "К") || (getToSmth() == "к"))) {
 			TempConverter a = new FromCelsiusToKelvin();
 			a.convert(getFromSmth(), getToSmth(), getUserValue());
